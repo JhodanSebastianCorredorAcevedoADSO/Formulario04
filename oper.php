@@ -1,26 +1,46 @@
 <?php
 
-function validacion($peso, $fecha)
+function valor()
 {
 
-    if (is_numeric($peso) && is_numeric($fecha)) {
-        return true;
-    } else {
-        return false;
+    if (isset($_POST['nombre'])) {
+        $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : "";
+        $peso = isset($_POST['peso']) ? $_POST['peso'] : "";
+        $fecha = isset($_POST['fecha']) ? $_POST['fecha'] : "";
+
+        $validar = array();
+
+        if ($nombre == "") {
+            array_push($validar, "El campo nombre no puede estar vacío");
+            $nombre = false;
+
+        }
+
+        if ($peso == "") {
+            array_push($validar, "Completa el peso");
+            $peso = false;
+        }
+
+        if ($fecha == "") {
+            array_push($validar, "La fecha está incompleta");
+            $fecha = false;
+        } else {
+
+            echo "<div class='alert alert-success m-2' role='alert'>Los datos están completos y se han enviado correctamente</div>";
+        }
+
+        // Errores posibles
+
+        if (count($validar) > 0) {
+            echo "<div class='alert alert-danger mb-2' role='alert'>";
+            for ($i = 0; $i < count($validar); $i++) {
+                echo "<li>" . $validar[$i] . "</li>";
+            }
+            echo "</div>";
+        }
     }
 }
 
-function error()
-{
-    echo "<span class='text-danger'> Ingresa solo numeros </span>";
-}
-
-
-// if (empty($nombre) || empty($peso) || empty($fecha)) {
-//     echo '<div style="text-align: center; background-color: #f5c6cb; margin: 20px;">Por favor, complete todos los campos del formulario.</div>';
-// } else{
-//     false;
-// }
 
 function vvalor($fecha)
 {
@@ -37,40 +57,41 @@ function vvalor($fecha)
         $diff = date_diff(date_create($fecha), date_create($fechaActual));
         $edad = $diff->y;
 
-        if ($edad >= 60) {
 
+        if ($edad >= 60) {
             return 'es un viejo';
+            // $categorias = 'viejo';
 
         } elseif ($edad >= 30 && $edad <= 59) {
             return 'es un adulto';
+            // $categorias = 'adulto';
 
         } elseif ($edad >= 13 && $edad <= 29) {
             return 'es un joven';
+            // $categorias = 'joven';
 
         } elseif ($edad >= 0 && $edad <= 12) {
             return 'es un niño';
+            // $categorias = 'niño';
 
         } elseif ($edad == "") {
             return;
         }
     }
+
+
 }
 
+// function por($peso)
+// {
 
-function por($peso)
-{
+//     $peso = [];
 
-    $peso = [];
+//     $total = array_sum($peso);
+//     $seg = count($peso);
+//     $porcentaje = $total / $seg;
 
-    if (empty($fecha)) {
-        return '';
-    }
-    $total = array_sum($peso);
-    $seg = count($peso);
-    $porcentaje = $total / $seg;
-
-    echo "p" . $porcentaje;
-}
-
+//     echo "p" . $porcentaje;
+// }
 
 ?>

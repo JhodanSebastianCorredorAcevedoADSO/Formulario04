@@ -65,12 +65,6 @@ window.addEventListener('load', function (){
 const validacion = (e) => {
     e.preventDefault();
 
-    if (nombre.value == "") {
-        alert("Ingrese el nombre");
-        nombre.focus();
-        return false;
-    }
-
     if (peso.value == "") {
         alert("Ingrese el peso");
         peso.focus();
