@@ -4,6 +4,32 @@ const peso = document.getElementById('peso');
 const fecha = document.getElementById('fecha');
 const btnEnviar = document.getElementById('btn-enviar');
 
+
+
+const edad = document.getElementById('edad');
+const calcularedad = (fecha) =>{
+    const fecha = new Date();
+    const diaactual = parseInt(fechaActual.getDate());
+    const mesactual = parseInt(fechaActual.getMonth()) + 1;
+    const añoactual = parseInt(fechaActual.getFullYears());
+
+    const diaNacimiento = parseInt(String(fecha).substring(0,4));
+    const mesNacimiento = parseInt(String(fecha).substring(5,7));
+    const añoNacimiento = parseInt(String(fecha).substring(8,10));
+
+    let edad = añoactual -añoNacimiento;
+    if (mesactual < mesNacimiento){
+        edad --;
+    } else if (mesactual = mesNacimiento){
+        if (diaactual < diaNacimiento){
+            edad --;
+        }
+    }
+    return edad;
+}
+
+
+
 const soloNumeros = (e) => {
     if ((e.keyCode < 48 || e.keyCode > 57) && e.keyCode) {
         e.preventDefault()
@@ -27,6 +53,14 @@ const soloLetras = (e) => {
         e.preventDefault()
     }
 }
+
+window.addEventListener('load', function (){
+    fecha.addEventListener('change', function(){
+
+    })
+})
+
+
 
 const validacion = (e) => {
     e.preventDefault();
